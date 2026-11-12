@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tuba Foundation</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#ffffff}
+.tf{--brown:#735725;--brown-d:#5B4410;--green:#4B6A2A;--green-d:#2F4420;--gold:#D0A93A;--gold-l:#F6EBC7;--cream:#FAF6EA;--ink:#2B2414;--muted:#5E5440;--line:#E7DFC8;font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:#ffffff;line-height:1.6;-webkit-font-smoothing:antialiased}
+.tf *{box-sizing:border-box}
+:where(.tf) :is(h1,h2,h3,p,figure){margin:0}
+:where(.tf) a{color:inherit;text-decoration:none}
+.tf [id]{scroll-margin-top:84px}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:56px;height:56px;border-radius:14px;border:1px solid var(--line);background:#fff;object-fit:cover}
+.brand b{font-size:22px;font-weight:800;letter-spacing:-.01em;color:var(--brown-d)}
+.nav{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:600;color:var(--muted)}
+.nav .l:hover{color:var(--green)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-weight:700;font-size:16px;border:2px solid transparent;transition:transform .2s,background .2s,box-shadow .2s}
+.btn.sm{min-height:44px;padding:0 22px;font-size:15px}
+.btn-primary{background:var(--brown);color:#ffffff}
+.btn-primary:hover{background:var(--brown-d);transform:translateY(-2px);box-shadow:0 10px 24px rgba(115,87,37,.28)}
+.btn-ghost{border-color:var(--brown);color:var(--brown-d);background:transparent}
+.btn-ghost:hover{background:var(--gold-l)}
+
+.hero{position:relative;overflow:hidden;padding:64px 0 96px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
+.chip{display:inline-flex;align-items:center;padding:8px 16px;border-radius:999px;background:var(--gold-l);color:var(--brown-d);font-size:14px;font-weight:700;margin-bottom:22px}
+.hero h1{font-size:clamp(34px,5.2vw,60px);line-height:1.08;font-weight:800;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;color:var(--green)}
+.lead{margin-top:22px;font-size:19px;color:var(--muted);max-width:560px}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--line);border-radius:999px;background:#ffffff;font-size:14px;font-weight:600;color:var(--muted)}
+.pill svg{color:var(--green)}
+.hero-art{position:relative;display:grid;place-items:center;min-height:440px}
+.blob{position:absolute;border-radius:50%}
+.b1{width:340px;height:340px;background:var(--gold-l);top:0;right:2%}
+.b2{width:200px;height:200px;background:#E3ECD2;bottom:0;left:4%}
+.logo-card{position:relative;width:min(100%,400px);padding:14px;border-radius:36px;background:#ffffff;border:1px solid var(--line);box-shadow:0 28px 64px rgba(75,56,18,.18)}
+.logo-card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:24px}
+
+.sec{padding:96px 0}
+.sec.alt{background:var(--cream)}
+.head{text-align:center;max-width:720px;margin:0 auto 56px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brown);margin-bottom:12px}
+.head h2{font-size:clamp(28px,3.6vw,42px);line-height:1.15;font-weight:800;letter-spacing:-.02em}
+.head p{margin-top:14px;font-size:18px;color:var(--muted)}
+.bar{display:block;width:56px;height:4px;border-radius:2px;background:var(--gold);margin:20px auto 0}
+
+.mv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.card{background:#ffffff;border:1px solid var(--line);border-radius:26px;padding:40px;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(75,56,18,.12)}
+.ico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;color:#ffffff;margin-bottom:22px}
+.ico.g{background:var(--green)}
+.ico.b{background:var(--brown)}
+.card h3{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.card p{font-size:17px;color:var(--muted)}
+.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tag{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--gold-l);color:var(--brown-d);font-size:13px;font-weight:700}
+.tag.g{background:#E3ECD2;color:var(--green-d)}
+
+.courses{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}
+.course{grid-column:span 2;display:flex;flex-direction:column;background:#ffffff;border:1px solid var(--line);border-radius:24px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.course:nth-child(n+4){grid-column:span 3}
+.course:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(75,56,18,.14)}
+.art{height:220px;display:flex;align-items:center;justify-content:center;background:var(--panel)}
+.art svg{width:auto;height:100%;max-width:100%;transition:transform .5s}
+.course:hover .art svg{transform:scale(1.05)}
+.cbody{display:flex;flex-direction:column;gap:10px;flex:1;padding:26px 26px 28px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.cbody h3{font-size:22px;font-weight:800;line-height:1.25;letter-spacing:-.01em}
+.cbody p{font-size:15.5px;color:var(--muted)}
+.more{margin-top:auto;padding-top:10px;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--green);transition:gap .2s}
+.more:hover{gap:13px}
+
+.grow{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px}
+.gi{position:relative;overflow:hidden;border-radius:20px;background:var(--line);min-width:0}
+.gi img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.gi:hover img{transform:scale(1.07)}
+.gi figcaption{position:absolute;left:0;right:0;bottom:0;padding:48px 18px 16px;color:#ffffff;background:linear-gradient(to top,rgba(32,24,8,.86),rgba(32,24,8,0));opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s}
+.gi:hover figcaption{opacity:1;transform:none}
+.gi figcaption b{display:block;font-size:16px;font-weight:700;line-height:1.3}
+.gi figcaption span{display:block;margin-top:2px;font-size:13px;opacity:.9}
+
+.foot{background:#2B2210;color:#E9E0C6;padding:84px 0 72px}
+.fg{display:grid;grid-template-columns:1.25fr 1fr 1.2fr;gap:48px}
+.fbrand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.fbrand img{width:68px;height:68px;border-radius:16px;background:#ffffff;object-fit:cover}
+.fbrand b{font-size:24px;font-weight:800;color:#ffffff;letter-spacing:-.01em}
+.urdu{font-family:'Noto Nastaliq Urdu',serif;font-size:21px;line-height:2;color:#E2BD52}
+.fsum{font-size:15.5px;color:#D8CFB4;max-width:380px}
+.copy{margin-top:28px;font-size:14px;color:#BFB596}
+.fh{font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#E2BD52;margin-bottom:22px}
+.fnote{font-size:15.5px;color:#D8CFB4;margin-bottom:20px}
+.soc{display:flex;align-items:center;gap:16px;padding:14px 18px;margin-bottom:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);transition:background .2s,color .2s,border-color .2s,transform .2s}
+.soc:hover{background:#D0A93A;color:#2B2210;border-color:#D0A93A;transform:translateY(-2px)}
+.soc-i{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex:none;background:#D0A93A;color:#2B2210;transition:background .2s,color .2s}
+.soc:hover .soc-i{background:#2B2210;color:#D0A93A}
+.soc b{display:block;font-size:16px;font-weight:700;line-height:1.3}
+.soc small{display:block;font-size:13.5px;opacity:.85}
+.ci{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px}
+.ci-i{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex:none;background:rgba(255,255,255,.08);color:#E2BD52}
+.ci p{font-size:16px;color:#E9E0C6;line-height:1.55;padding-top:2px}
+.ci small{display:block;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#BFB596;margin-bottom:2px}
+.ci a{font-size:21px;font-weight:700;color:#ffffff}
+.ci a:hover{color:#E2BD52}
+
+@keyframes rise {
+from{opacity:0;translate:0 28px}
+to{opacity:1;translate:0 0}
+}
+@supports (animation-timeline:view()) {
+.reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+}
+@media (hover:none) {
+.gi figcaption{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce) {
+html{scroll-behavior:auto}
+.reveal{animation:none!important}
+}
+@media (max-width:980px) {
+.course,.course:nth-child(n+4){grid-column:span 3}
+.course:last-child{grid-column:span 6}
+.fg{grid-template-columns:1fr 1fr}
+.fg > div:first-child{grid-column:span 2}
+}
+@media (max-width:900px) {
+.hero{padding:40px 0 72px}
+.hero-grid{grid-template-columns:1fr;gap:40px}
+.hero-art{min-height:0;padding:20px 0}
+.logo-card{width:min(100%,320px)}
+.b1{width:240px;height:240px}
+.b2{width:140px;height:140px}
+}
+@media (max-width:820px) {
+.mv{grid-template-columns:1fr}
+.card{padding:30px}
+.sec{padding:72px 0}
+}
+@media (max-width:760px) {
+.nav .l{display:none}
+.top .wrap{min-height:68px}
+.brand img{width:46px;height:46px}
+.brand b{font-size:19px}
+}
+@media (max-width:640px) {
+.course,.course:nth-child(n+4),.course:last-child{grid-column:span 6}
+.grow{flex-direction:column}
+.gi{flex:none!important;width:100%}
+.gi.tall{aspect-ratio:4/5!important}
+.gi.tall img{object-position:50% 72%}
+.fg{grid-template-columns:1fr}
+.fg > div:first-child{grid-column:span 1}
+.cta .btn{width:100%}
+.foot{padding:64px 0 56px}
+}
+</style>
+</helmet>
+
+<div class="tf">
+
+<header class="top">
+<div class="wrap">
+<a class="brand" href="#home">
+<img src="./assets/aa3bfff8b6524e9e6cd6e5366660c4ed.jpg" alt="Tuba Foundation logo" width="56" height="56">
+<b>Tuba Foundation</b>
+</a>
+<nav class="nav" aria-label="Main">
+<a class="l" href="#about">Mission &amp; Vision</a>
+<a class="l" href="#courses">Courses</a>
+<a class="l" href="#gallery">Gallery</a>
+<a class="btn btn-primary sm" href="#contact">Contact Us</a>
+</nav>
+</div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+<div class="wrap hero-grid">
+<div class="hero-copy">
+<span class="chip">Universal Education Centre · Gokak</span>
+<h1>Empowering Communities Through <em>Education</em>, <em>Skill Development</em>, and <em>Moral Values</em></h1>
+<p class="lead">Tuba Foundation is an NGO and educational trust running the Universal Education Centre in Gokak, offering practical skill training and Islamic education so that every family can learn, earn and grow with dignity.</p>
+<div class="cta">
+<a class="btn btn-primary" href="#courses">Explore Our Courses
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+<a class="btn btn-ghost" href="#contact">Contact Us</a>
+</div>
+<div class="pills">
+<span class="pill">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"></path></svg>
+Skill Development
+</span>
+<span class="pill">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"></path></svg>
+Women Empowerment
+</span>
+<span class="pill">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"></path><path d="M8 7h8M8 11h6"></path></svg>
+Islamic Education
+</span>
+</div>
+</div>
+<div class="hero-art">
+<span class="blob b1"></span>
+<span class="blob b2"></span>
+<div class="logo-card">
+<img src="./assets/aa3bfff8b6524e9e6cd6e5366660c4ed.jpg" alt="Tuba Foundation emblem: a tree growing from an open book">
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec alt" id="about">
+<div class="wrap">
+<div class="head reveal">
+<span class="eyebrow">Who We Are</span>
+<h2>Our Mission &amp; Vision</h2>
+<span class="bar"></span>
+</div>
+<div class="mv">
+<article class="card reveal">
+<div class="ico g">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.3" fill="currentColor"></circle></svg>
+</div>
+<h3>Our Mission</h3>
+<p>To make modern skills, women empowerment and value-based education accessible to everyone, so that families can stand on their own feet and together build a self-reliant society grounded in knowledge, dignity and service.</p>
+<div class="kw">
+<span class="tag g">Modern skills</span>
+<span class="tag g">Women empowerment</span>
+<span class="tag g">Value-based education</span>
+</div>
+</article>
+<article class="card reveal">
+<div class="ico b">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+</div>
+<h3>Our Vision</h3>
+<p>An educated, skilled and morally strong community where every individual, whatever their background, has an equal opportunity to learn, grow and contribute to the well-being of others.</p>
+<div class="kw">
+<span class="tag">Educated</span>
+<span class="tag">Skilled</span>
+<span class="tag">Morally strong</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="sec" id="courses">
+<div class="wrap">
+<div class="head reveal">
+<span class="eyebrow">Courses &amp; Programs</span>
+<h2>Universal Education Centre</h2>
+<p>Skill Development &amp; Islamic Education Programs</p>
+<span class="bar"></span>
+</div>
+<div class="courses">
+
+<article class="course reveal">
+<div class="art" style="--panel:#E3ECD2">
+<svg viewBox="0 0 240 160" aria-hidden="true">
+<circle cx="36" cy="40" r="7" fill="#D0A93A"></circle>
+<circle cx="206" cy="30" r="5" fill="#4B6A2A" opacity=".35"></circle>
+<rect x="58" y="22" width="124" height="82" rx="9" fill="#735725"></rect>
+<rect x="65" y="29" width="110" height="64" rx="4" fill="#FFFDF5"></rect>
+<circle cx="73" cy="36" r="2" fill="#D0A93A"></circle>
+<circle cx="80" cy="36" r="2" fill="#4B6A2A"></circle>
+<circle cx="87" cy="36" r="2" fill="#735725"></circle>
+<path d="M96 58l-13 11 13 11" stroke="#4B6A2A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M144 58l13 11-13 11" stroke="#4B6A2A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M126 54l-12 30" stroke="#D0A93A" stroke-width="5" stroke-linecap="round"></path>
+<rect x="110" y="104" width="20" height="14" fill="#5B4410"></rect>
+<rect x="92" y="116" width="56" height="8" rx="4" fill="#735725"></rect>
+<rect x="70" y="132" width="100" height="16" rx="5" fill="#FFFDF5" stroke="#735725" stroke-width="2.5"></rect>
+<path d="M78 138h84M78 143h84" stroke="#D0A93A" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"></path>
+<rect x="182" y="130" width="16" height="22" rx="8" fill="#D0A93A" stroke="#735725" stroke-width="2"></rect>
+<path d="M190 130v9" stroke="#735725" stroke-width="2"></path>
+</svg>
+</div>
+<div class="cbody">
+<div class="tags"><span class="tag g">Skill Development</span></div>
+<h3>Computer Course</h3>
+<p>Build confident digital skills, from computer basics and everyday office tools to the foundations of coding and online learning.</p>
+<a class="more" href="#contact">Enquire now
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</article>
+
+<article class="course reveal">
+<div class="art" style="--panel:#F6EBC7">
+<svg viewBox="0 0 240 160" aria-hidden="true">
+<circle cx="26" cy="58" r="10" fill="#D0A93A"></circle>
+<circle cx="23" cy="55" r="1.8" fill="#FFFDF5"></circle>
+<circle cx="29" cy="55" r="1.8" fill="#FFFDF5"></circle>
+<circle cx="23" cy="61" r="1.8" fill="#FFFDF5"></circle>
+<circle cx="29" cy="61" r="1.8" fill="#FFFDF5"></circle>
+<rect x="40" y="108" width="160" height="16" rx="5" fill="#735725"></rect>
+<rect x="162" y="46" width="34" height="66" rx="8" fill="#4B6A2A"></rect>
+<rect x="52" y="46" width="144" height="28" rx="9" fill="#4B6A2A"></rect>
+<rect x="52" y="46" width="36" height="48" rx="9" fill="#4B6A2A"></rect>
+<rect x="58" y="52" width="24" height="6" rx="3" fill="#FFFFFF" opacity=".25"></rect>
+<rect x="46" y="100" width="104" height="8" rx="2" fill="#FFFDF5" stroke="#735725" stroke-width="2"></rect>
+<path d="M52 104H142" stroke="#D0A93A" stroke-width="2" stroke-dasharray="5 4"></path>
+<rect x="62" y="98" width="15" height="5" rx="2" fill="#5B4410"></rect>
+<rect x="68" y="92" width="3" height="16" fill="#2B2414"></rect>
+<rect x="105" y="32" width="22" height="4" rx="2" fill="#735725"></rect>
+<rect x="108" y="36" width="16" height="12" rx="2" fill="#D0A93A"></rect>
+<path d="M116 32C116 12 62 12 69.5 54L69.5 96" stroke="#D0A93A" stroke-width="2" fill="none" stroke-linecap="round"></path>
+<circle cx="146" cy="60" r="5" fill="#FFFDF5"></circle>
+<circle cx="206" cy="62" r="15" fill="#D0A93A" stroke="#735725" stroke-width="3"></circle>
+<circle cx="206" cy="62" r="5" fill="#735725"></circle>
+<rect x="58" y="132" width="124" height="14" rx="3" fill="#FFFDF5" stroke="#735725" stroke-width="2"></rect>
+<path d="M70 132v6M80 132v9M90 132v6M100 132v9M110 132v6M120 132v9M130 132v6M140 132v9M150 132v6M160 132v9M170 132v6" stroke="#735725" stroke-width="1.6"></path>
+</svg>
+</div>
+<div class="cbody">
+<div class="tags"><span class="tag g">Skill Development</span></div>
+<h3>Tailoring Course</h3>
+<p>Learn stitching, cutting and garment-making step by step, and turn a practical skill into a steady, home-based income.</p>
+<a class="more" href="#contact">Enquire now
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</article>
+
+<article class="course reveal">
+<div class="art" style="--panel:#F2E3D0">
+<svg viewBox="0 0 240 160" aria-hidden="true">
+<path d="M196 40q14-4 18-18-14 2-18 18z" fill="#4B6A2A" opacity=".4"></path>
+<circle cx="30" cy="42" r="6" fill="#D0A93A"></circle>
+<rect x="92" y="118" width="40" height="42" rx="6" fill="#EBC9A0"></rect>
+<rect x="69" y="82" width="14" height="44" rx="7" fill="#EBC9A0" transform="rotate(-38 76 104)"></rect>
+<rect x="80" y="46" width="14" height="54" rx="7" fill="#EBC9A0"></rect>
+<rect x="96.5" y="34" width="14" height="66" rx="7" fill="#EBC9A0"></rect>
+<rect x="113" y="30" width="14" height="70" rx="7" fill="#EBC9A0"></rect>
+<rect x="129.5" y="42" width="14" height="58" rx="7" fill="#EBC9A0"></rect>
+<rect x="80" y="70" width="64" height="62" rx="24" fill="#EBC9A0"></rect>
+<g fill="#6B3A17">
+<ellipse cx="112" cy="92" rx="3.2" ry="8"></ellipse>
+<ellipse cx="112" cy="92" rx="3.2" ry="8" transform="rotate(45 112 102)"></ellipse>
+<ellipse cx="112" cy="92" rx="3.2" ry="8" transform="rotate(90 112 102)"></ellipse>
+<ellipse cx="112" cy="92" rx="3.2" ry="8" transform="rotate(135 112 102)"></ellipse>
+<ellipse cx="112" cy="92" rx="3.2" ry="8" transform="rotate(180 112 102)"></ellipse>
+<ellipse cx="112" cy="92" rx="3.2" ry="8" transform="rotate(225 112 102)"></ellipse>
+<ellipse cx="112" cy="92" rx="3.2" ry="8" transform="rotate(270 112 102)"></ellipse>
+<ellipse cx="112" cy="92" rx="3.2" ry="8" transform="rotate(315 112 102)"></ellipse>
+</g>
+<circle cx="112" cy="102" r="4" fill="#EBC9A0" stroke="#6B3A17" stroke-width="1.6"></circle>
+<circle cx="112" cy="102" r="16" fill="none" stroke="#6B3A17" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.1 5"></circle>
+<path d="M87 54V84M103.5 42V84M120 38V84M136.5 50V84" stroke="#6B3A17" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.1 6"></path>
+<path d="M92 122c8 8 32 8 40 0" stroke="#6B3A17" stroke-width="2" fill="none" stroke-linecap="round"></path>
+<rect x="88" y="136" width="48" height="7" rx="3.5" fill="#D0A93A" stroke="#735725" stroke-width="1.5"></rect>
+<path d="M96 151h32" stroke="#6B3A17" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.1 5"></path>
+<path d="M176 146L194 96 212 104Z" fill="#D0A93A" stroke="#735725" stroke-width="2" stroke-linejoin="round"></path>
+<path d="M194 96L212 104" stroke="#735725" stroke-width="3.5" stroke-linecap="round"></path>
+<path d="M188 114l14 6M184 126l12 5" stroke="#735725" stroke-width="1.6" stroke-linecap="round"></path>
+<circle cx="174" cy="148" r="2.5" fill="#6B3A17"></circle>
+<path d="M174 148c-8 4-14 0-18-6" stroke="#6B3A17" stroke-width="2" fill="none" stroke-linecap="round"></path>
+</svg>
+</div>
+<div class="cbody">
+<div class="tags"><span class="tag g">Skill Development</span></div>
+<h3>Mehandi Course</h3>
+<p>From simple patterns to elegant bridal designs, learn the art of henna and grow it into your own creative livelihood.</p>
+<a class="more" href="#contact">Enquire now
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</article>
+
+<article class="course reveal">
+<div class="art" style="--panel:#E3ECD2">
+<svg viewBox="0 0 240 160" aria-hidden="true">
+<circle cx="118" cy="38" r="15" fill="#D0A93A"></circle>
+<circle cx="125" cy="35" r="12" style="fill:var(--panel)"></circle>
+<path d="M134 26l1.8 4.2L140 32l-4.2 1.8L134 38l-1.8-4.2L128 32l4.2-1.8z" fill="#D0A93A"></path>
+<g>
+<path d="M204 6v22" stroke="#735725" stroke-width="2"></path>
+<path d="M195 34q9-12 18 0z" fill="#735725"></path>
+<rect x="196" y="34" width="16" height="30" rx="5" fill="#D0A93A" stroke="#735725" stroke-width="2"></rect>
+<ellipse cx="204" cy="49" rx="3.5" ry="8" fill="#FFFDF5"></ellipse>
+<rect x="198" y="64" width="12" height="4" rx="2" fill="#735725"></rect>
+</g>
+<g transform="translate(-139.4 13) scale(.85)">
+<path d="M204 6v22" stroke="#735725" stroke-width="2"></path>
+<path d="M195 34q9-12 18 0z" fill="#735725"></path>
+<rect x="196" y="34" width="16" height="30" rx="5" fill="#D0A93A" stroke="#735725" stroke-width="2"></rect>
+<ellipse cx="204" cy="49" rx="3.5" ry="8" fill="#FFFDF5"></ellipse>
+<rect x="198" y="64" width="12" height="4" rx="2" fill="#735725"></rect>
+</g>
+<path d="M84 150L154 110" stroke="#735725" stroke-width="8" stroke-linecap="round"></path>
+<path d="M156 150L86 110" stroke="#5B4410" stroke-width="8" stroke-linecap="round"></path>
+<circle cx="120" cy="130" r="4.5" fill="#D0A93A"></circle>
+<path d="M54 72Q88 62 120 74Q152 62 186 72V116Q152 106 120 118Q88 106 54 116Z" fill="#4B6A2A"></path>
+<path d="M60 74Q90 66 120 77V114Q90 105 60 112Z" fill="#FFFDF5"></path>
+<path d="M180 74Q150 66 120 77V114Q150 105 180 112Z" fill="#FFFDF5"></path>
+<path d="M68 85Q90 80 112 88M68 93Q90 88 112 96M68 101Q90 96 112 104" stroke="#735725" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"></path>
+<path d="M128 88Q150 80 172 85M128 96Q150 88 172 93M128 104Q150 96 172 101" stroke="#735725" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"></path>
+<path d="M117 114v24l3.5-4 3.5 4v-24z" fill="#D0A93A"></path>
+</svg>
+</div>
+<div class="cbody">
+<div class="tags"><span class="tag">Islamic Education</span><span class="tag g">1 Year</span></div>
+<h3>Madarsa Aayesha Lilbanat – 1 Year Momina Course</h3>
+<p>A one-year Islamic education programme for girls and women, built on the Quran, Deeniyat and good character.</p>
+<a class="more" href="#contact">Enquire now
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</article>
+
+<article class="course reveal">
+<div class="art" style="--panel:#F6EBC7">
+<svg viewBox="0 0 240 160" aria-hidden="true">
+<path d="M28 20l2.2 5.8L36 28l-5.8 2.2L28 36l-2.2-5.8L20 28l5.8-2.2z" fill="#D0A93A"></path>
+<rect x="20" y="136" width="200" height="6" rx="3" fill="#735725" opacity=".25"></rect>
+<rect x="44" y="70" width="14" height="66" fill="#735725"></rect>
+<rect x="40" y="88" width="22" height="5" rx="2" fill="#D0A93A"></rect>
+<path d="M42 70L51 48 60 70z" fill="#D0A93A"></path>
+<circle cx="51" cy="45" r="2.5" fill="#735725"></circle>
+<rect x="182" y="70" width="14" height="66" fill="#735725"></rect>
+<rect x="178" y="88" width="22" height="5" rx="2" fill="#D0A93A"></rect>
+<path d="M180 70L189 48 198 70z" fill="#D0A93A"></path>
+<circle cx="189" cy="45" r="2.5" fill="#735725"></circle>
+<rect x="66" y="104" width="108" height="32" fill="#FFFDF5" stroke="#735725" stroke-width="2.5"></rect>
+<path d="M82 104A38 38 0 0 1 158 104z" fill="#4B6A2A"></path>
+<path d="M96 92A30 30 0 0 1 112 74" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" opacity=".4"></path>
+<path d="M120 66V52" stroke="#735725" stroke-width="2.5"></path>
+<circle cx="120" cy="46" r="6" fill="#D0A93A"></circle>
+<circle cx="122.5" cy="44.5" r="5" style="fill:var(--panel)"></circle>
+<path d="M108 136V120A12 12 0 0 1 132 120V136z" fill="#735725"></path>
+<path d="M76 136V124A7 7 0 0 1 90 124V136z" fill="#D0A93A"></path>
+<path d="M150 136V124A7 7 0 0 1 164 124V136z" fill="#D0A93A"></path>
+<path d="M198 23V19a5 5 0 0 1 5-5h22a5 5 0 0 1 5 5V23z" fill="#D0A93A"></path>
+<rect x="198" y="14" width="32" height="30" rx="5" fill="none" stroke="#735725" stroke-width="2.5"></rect>
+<rect x="205" y="9" width="3" height="9" rx="1.5" fill="#735725"></rect>
+<rect x="220" y="9" width="3" height="9" rx="1.5" fill="#735725"></rect>
+<circle cx="206" cy="31" r="1.8" fill="#4B6A2A"></circle>
+<circle cx="214" cy="31" r="1.8" fill="#4B6A2A"></circle>
+<circle cx="222" cy="31" r="1.8" fill="#4B6A2A"></circle>
+<circle cx="206" cy="38" r="1.8" fill="#4B6A2A"></circle>
+<circle cx="214" cy="38" r="3.2" fill="#4B6A2A"></circle>
+</svg>
+</div>
+<div class="cbody">
+<div class="tags"><span class="tag">Islamic Education</span><span class="tag g">Monthly</span></div>
+<h3>Monthly Deeni Course</h3>
+<p>A flexible monthly programme that helps the wider community learn the essentials of Deen at a comfortable pace.</p>
+<a class="more" href="#contact">Enquire now
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section class="sec alt" id="gallery">
+<div class="wrap">
+<div class="head reveal">
+<span class="eyebrow">Photo Gallery</span>
+<h2>Gallery of Our Work &amp; Activities</h2>
+<p>Moments from our programmes, camps and award ceremonies.</p>
+<span class="bar"></span>
+</div>
+
+<div class="grow">
+<figure class="gi reveal" data-slot="Image 1" style="flex:1.333 1 0%;aspect-ratio:1.333/1">
+<img src="./assets/b069bbbe9d04d3e6d787d13f05d7ed51.jpg" alt="Guests seated on stage and community members in the audience at Hazarat Ahmedshah Shadi Mahal, Gokak">
+<figcaption><b>Community Programme</b><span>Hazarat Ahmedshah Shadi Mahal, Gokak</span></figcaption>
+</figure>
+<figure class="gi reveal" data-slot="Image 2" style="flex:0.75 1 0%;aspect-ratio:0.75/1">
+<img src="./assets/5b5b1edc73f9f76b4ca607534094dbfe.jpg" alt="Two students holding a Universal Education Centre certificate in front of a Tuba Foundation backdrop">
+<figcaption><b>Certificate Distribution</b><span>Universal Education Centre</span></figcaption>
+</figure>
+<figure class="gi tall reveal" data-slot="Image 3" style="flex:0.4617 1 0%;aspect-ratio:0.4617/1">
+<img src="./assets/5adeba9132e07e6b12bb9ba97eef9f81.jpg" alt="Guests presenting a memento on stage at a prize distribution ceremony">
+<figcaption><b>Prize Distribution</b><span>Gokak</span></figcaption>
+</figure>
+</div>
+
+<div class="grow">
+<figure class="gi reveal" data-slot="Image 4" style="flex:2.216 1 0%;aspect-ratio:2.216/1">
+<img src="./assets/694ed1a747065a78e9749719bbf791ea.jpg" alt="Guests and volunteers seated in front of the Free Mega Khatna Camp banner">
+<figcaption><b>Free Mega Khatna Camp</b><span>With Rahman Foundation and Hind Education Assistance Trust</span></figcaption>
+</figure>
+<figure class="gi reveal" data-slot="Image 5" style="flex:1.333 1 0%;aspect-ratio:1.333/1">
+<img src="./assets/6f3b1560b3672204fe64d5f16a8be218.jpg" alt="Collage of the Khatna Camp 2025 on 04 May 2025 with guest felicitations">
+<figcaption><b>Khatna Camp 2025</b><span>04 May 2025</span></figcaption>
+</figure>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer class="foot" id="contact">
+<div class="wrap fg">
+
+<div class="reveal">
+<div class="fbrand">
+<img src="./assets/aa3bfff8b6524e9e6cd6e5366660c4ed.jpg" alt="Tuba Foundation logo" width="68" height="68">
+<b>Tuba Foundation</b>
+</div>
+<p class="urdu" dir="rtl" lang="ur">خدمت کر سکون پا</p>
+<p class="fsum">Tuba Foundation is an NGO and educational trust serving the Gokak community through skill development, women empowerment and value-based Islamic education.</p>
+<p class="copy">© 2026 Tuba Foundation. All Rights Reserved.</p>
+</div>
+
+<div class="reveal">
+<h3 class="fh">Connect With Us</h3>
+<p class="fnote">Follow our programmes, camps and everyday work with the community.</p>
+<a class="soc" href="https://youtube.com/@tuba_foundation?si=8st5Ysaos_MDdZu1" target="_blank" rel="noopener">
+<span class="soc-i">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4.5"></rect><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor"></path></svg>
+</span>
+<span><b>YouTube</b><small>@tuba_foundation</small></span>
+</a>
+<a class="soc" href="https://www.instagram.com/tuba_foundation_?igsh=MTVnM3hrNmV2b3p2ag%3D%3D" target="_blank" rel="noopener">
+<span class="soc-i">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"></circle></svg>
+</span>
+<span><b>Instagram</b><small>@tuba_foundation_</small></span>
+</a>
+</div>
+
+<div class="reveal">
+<h3 class="fh">Contact &amp; Location</h3>
+<div class="ci">
+<span class="ci-i">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+</span>
+<p><small>Address</small>Mastansab Darga Complex, 1st Floor, Momin Galli, Gokak</p>
+</div>
+<div class="ci">
+<span class="ci-i">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg>
+</span>
+<p><small>Mobile</small><a href="tel:+919380237095">+91 9380237095</a></p>
+</div>
+</div>
+
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":4500}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
