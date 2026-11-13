@@ -14,12 +14,12 @@
 <style>
 html{scroll-behavior:smooth}
 body{margin:0;background:#ffffff}
-.tf{--brown:#735725;--brown-d:#5B4410;--green:#4B6A2A;--green-d:#2F4420;--gold:#D0A93A;--gold-l:#F6EBC7;--cream:#FAF6EA;--ink:#2B2414;--muted:#5E5440;--line:#E7DFC8;font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:#ffffff;line-height:1.6;-webkit-font-smoothing:antialiased}
+.tf{--brown:#735725;--brown-d:#5B4410;--green:#4B6A2A;--green-d:#2F4420;--gold:#D0A93A;--gold-l:#F6EBC7;--cream:#FAF6EA;--ink:#2B2414;--muted:#5E5440;--line:#E7DFC8;font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:#ffffff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;-webkit-text-size-adjust:100%}
 .tf *{box-sizing:border-box}
 :where(.tf) :is(h1,h2,h3,p,figure){margin:0}
 :where(.tf) a{color:inherit;text-decoration:none}
 .tf [id]{scroll-margin-top:84px}
-.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(16px,4.5vw,24px)}
 
 .top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px}
@@ -28,6 +28,14 @@ body{margin:0;background:#ffffff}
 .brand b{font-size:22px;font-weight:800;letter-spacing:-.01em;color:var(--brown-d)}
 .nav{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:600;color:var(--muted)}
 .nav .l:hover{color:var(--green)}
+.nav .l{padding:10px 2px}
+.brand b{white-space:nowrap}
+.burger{display:none;align-items:center;justify-content:center;width:46px;height:46px;padding:0;border-radius:14px;border:1.5px solid var(--line);background:#ffffff;color:var(--brown-d);cursor:pointer}
+.burger:hover{background:var(--gold-l)}
+.burger .i-close{display:none}
+.burger[aria-expanded="true"] .i-open{display:none}
+.burger[aria-expanded="true"] .i-close{display:block}
+.mpanel{display:none}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-weight:700;font-size:16px;border:2px solid transparent;transition:transform .2s,background .2s,box-shadow .2s}
 .btn.sm{min-height:44px;padding:0 22px;font-size:15px}
@@ -128,6 +136,9 @@ to{opacity:1;translate:0 0}
 }
 @media (hover:none) {
 .gi figcaption{opacity:1;transform:none}
+.gi:hover img{transform:none}
+.card:hover,.course:hover,.soc:hover,.btn-primary:hover{transform:none;box-shadow:none}
+.course:hover .art svg{transform:none}
 }
 @media (prefers-reduced-motion:reduce) {
 html{scroll-behavior:auto}
@@ -153,21 +164,56 @@ html{scroll-behavior:auto}
 .sec{padding:72px 0}
 }
 @media (max-width:760px) {
-.nav .l{display:none}
+.nav{display:none}
+.burger{display:inline-flex}
 .top .wrap{min-height:68px}
 .brand img{width:46px;height:46px}
 .brand b{font-size:19px}
+.mpanel{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:#ffffff;border-bottom:1px solid var(--line);box-shadow:0 20px 32px rgba(43,34,16,.14);padding:6px 16px 18px}
+.mpanel a:not(.btn){display:flex;align-items:center;min-height:54px;padding:0 6px;font-size:17px;font-weight:600;border-bottom:1px solid var(--line)}
+.mpanel .btn{margin-top:16px;width:100%}
 }
 @media (max-width:640px) {
 .course,.course:nth-child(n+4),.course:last-child{grid-column:span 6}
-.grow{flex-direction:column}
-.gi{flex:none!important;width:100%}
-.gi.tall{aspect-ratio:4/5!important}
-.gi.tall img{object-position:50% 72%}
-.fg{grid-template-columns:1fr}
+.fg{grid-template-columns:1fr;gap:40px}
 .fg > div:first-child{grid-column:span 1}
 .cta .btn{width:100%}
-.foot{padding:64px 0 56px}
+.foot{padding:64px 0 calc(48px + env(safe-area-inset-bottom))}
+.art{height:200px}
+.cbody{padding:22px 20px 24px}
+.cbody p{font-size:16px}
+.more{min-height:44px}
+.lead{font-size:17px}
+.head{margin-bottom:36px}
+.head p{font-size:16.5px}
+.card{padding:26px 22px}
+.card h3{font-size:23px}
+.card p{font-size:16px}
+}
+@media (max-width:900px) {
+.hero-copy{text-align:center}
+.lead{margin-left:auto;margin-right:auto}
+.cta,.pills{justify-content:center}
+.grow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.gi{flex:none!important;width:100%}
+.gi.wide{grid-column:span 2}
+.gi.por{aspect-ratio:3/4!important}
+.gi.tall img{object-position:50% 72%}
+}
+@media (max-width:560px) {
+.grow{grid-template-columns:1fr}
+.gi.wide{grid-column:span 1}
+.gi.por{aspect-ratio:4/5!important}
+}
+@media (max-width:480px) {
+.sec{padding:60px 0}
+.hero{padding:32px 0 56px}
+.chip{font-size:13px;padding:7px 14px}
+.pill{font-size:13px;padding:8px 13px}
+.logo-card{width:min(100%,260px)}
+.brand b{font-size:18px}
+.fbrand b{font-size:22px}
+.soc{padding:12px 14px;gap:12px}
 }
 </style>
 </helmet>
@@ -186,7 +232,19 @@ html{scroll-behavior:auto}
 <a class="l" href="#gallery">Gallery</a>
 <a class="btn btn-primary sm" href="#contact">Contact Us</a>
 </nav>
+<button class="burger" type="button" aria-label="Menu" aria-expanded="{{ menuOpen }}" onClick="{{ toggleMenu }}">
+<svg class="i-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+<svg class="i-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
 </div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div class="mpanel">
+<a href="#about" onClick="{{ closeMenu }}">Mission &amp; Vision</a>
+<a href="#courses" onClick="{{ closeMenu }}">Courses</a>
+<a href="#gallery" onClick="{{ closeMenu }}">Gallery</a>
+<a class="btn btn-primary" href="#contact" onClick="{{ closeMenu }}">Contact Us</a>
+</div>
+</sc-if>
 </header>
 
 <main>
@@ -194,8 +252,8 @@ html{scroll-behavior:auto}
 <section class="hero" id="home">
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<span class="chip">Universal Education Centre · Gokak</span>
-<h1>Empowering Communities Through <em>Education</em>, <em>Skill Development</em>, and <em>Moral Values</em></h1>
+<span class="chip" style="padding-right: 20px">Universal Education Centre · Gokak</span>
+<h1 style="text-align: center; font-size: clamp(28px, 7.2vw, 49px); letter-spacing: 0.04em; overflow-wrap: break-word">Empowering Communities Through <em>Education</em>, <em>Skill Development</em>, and <em>Moral Values</em></h1>
 <p class="lead">Tuba Foundation is an NGO and educational trust running the Universal Education Centre in Gokak, offering practical skill training and Islamic education so that every family can learn, earn and grow with dignity.</p>
 <div class="cta">
 <a class="btn btn-primary" href="#courses">Explore Our Courses
@@ -485,27 +543,27 @@ Islamic Education
 </div>
 
 <div class="grow">
-<figure class="gi reveal" data-slot="Image 1" style="flex:1.333 1 0%;aspect-ratio:1.333/1">
-<img src="./assets/b069bbbe9d04d3e6d787d13f05d7ed51.jpg" alt="Guests seated on stage and community members in the audience at Hazarat Ahmedshah Shadi Mahal, Gokak">
+<figure class="gi wide reveal" data-slot="Image 1" style="flex:1.333 1 0%;aspect-ratio:1.333/1">
+<img loading="lazy" decoding="async" src="./assets/b069bbbe9d04d3e6d787d13f05d7ed51.jpg" alt="Guests seated on stage and community members in the audience at Hazarat Ahmedshah Shadi Mahal, Gokak">
 <figcaption><b>Community Programme</b><span>Hazarat Ahmedshah Shadi Mahal, Gokak</span></figcaption>
 </figure>
-<figure class="gi reveal" data-slot="Image 2" style="flex:0.75 1 0%;aspect-ratio:0.75/1">
-<img src="./assets/5b5b1edc73f9f76b4ca607534094dbfe.jpg" alt="Two students holding a Universal Education Centre certificate in front of a Tuba Foundation backdrop">
+<figure class="gi por reveal" data-slot="Image 2" style="flex:0.75 1 0%;aspect-ratio:0.75/1">
+<img loading="lazy" decoding="async" src="./assets/5b5b1edc73f9f76b4ca607534094dbfe.jpg" alt="Two students holding a Universal Education Centre certificate in front of a Tuba Foundation backdrop">
 <figcaption><b>Certificate Distribution</b><span>Universal Education Centre</span></figcaption>
 </figure>
-<figure class="gi tall reveal" data-slot="Image 3" style="flex:0.4617 1 0%;aspect-ratio:0.4617/1">
-<img src="./assets/5adeba9132e07e6b12bb9ba97eef9f81.jpg" alt="Guests presenting a memento on stage at a prize distribution ceremony">
+<figure class="gi tall por reveal" data-slot="Image 3" style="flex:0.4617 1 0%;aspect-ratio:0.4617/1">
+<img loading="lazy" decoding="async" src="./assets/5adeba9132e07e6b12bb9ba97eef9f81.jpg" alt="Guests presenting a memento on stage at a prize distribution ceremony">
 <figcaption><b>Prize Distribution</b><span>Gokak</span></figcaption>
 </figure>
 </div>
 
 <div class="grow">
-<figure class="gi reveal" data-slot="Image 4" style="flex:2.216 1 0%;aspect-ratio:2.216/1">
-<img src="./assets/694ed1a747065a78e9749719bbf791ea.jpg" alt="Guests and volunteers seated in front of the Free Mega Khatna Camp banner">
+<figure class="gi wide reveal" data-slot="Image 4" style="flex:2.216 1 0%;aspect-ratio:2.216/1">
+<img loading="lazy" decoding="async" src="./assets/694ed1a747065a78e9749719bbf791ea.jpg" alt="Guests and volunteers seated in front of the Free Mega Khatna Camp banner">
 <figcaption><b>Free Mega Khatna Camp</b><span>With Rahman Foundation and Hind Education Assistance Trust</span></figcaption>
 </figure>
-<figure class="gi reveal" data-slot="Image 5" style="flex:1.333 1 0%;aspect-ratio:1.333/1">
-<img src="./assets/6f3b1560b3672204fe64d5f16a8be218.jpg" alt="Collage of the Khatna Camp 2025 on 04 May 2025 with guest felicitations">
+<figure class="gi wide reveal" data-slot="Image 5" style="flex:1.333 1 0%;aspect-ratio:1.333/1">
+<img loading="lazy" decoding="async" src="./assets/6f3b1560b3672204fe64d5f16a8be218.jpg" alt="Collage of the Khatna Camp 2025 on 04 May 2025 with guest felicitations">
 <figcaption><b>Khatna Camp 2025</b><span>04 May 2025</span></figcaption>
 </figure>
 </div>
@@ -564,12 +622,19 @@ Islamic Education
 </div>
 </footer>
 
+
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":4500}}'>
 class Component extends DCLogic {
 renderVals() {
-return {};
+const open = !!(this.state && this.state.menuOpen);
+return {
+menuOpen: open,
+toggleMenu: () => this.setState((s) => ({ menuOpen: !(s && s.menuOpen) })),
+closeMenu: () => this.setState({ menuOpen: false })
+};
 }
 }
 </script>
