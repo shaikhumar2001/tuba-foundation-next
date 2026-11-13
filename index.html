@@ -327,7 +327,7 @@
     </section>
 
     <!-- ======================================================================
-         PHASE 5: Photo Gallery (#gallery)
+         PHASE 5: Photo Gallery (#gallery) — Modern Bento-Style Layout
          ====================================================================== -->
     <section class="section section--alt" id="gallery">
       <div class="container">
@@ -340,63 +340,73 @@
           </div>
         </div>
 
-        <div class="gallery-grid">
-          <!-- Row 1: Feature Lead (7 cols) + Complementary (5 cols) = 12 cols -->
-          <figure class="gallery-item gallery-item--feature">
-            <div class="gallery-item__media">
-              <img loading="lazy" decoding="async" src="./assets/b069bbbe9d04d3e6d787d13f05d7ed51.jpg" alt="Community Programme at Hazarat Ahmedshah Shadi Mahal, Gokak">
-              <span class="gallery-item__badge">Community Gathering</span>
-            </div>
-            <figcaption class="gallery-caption">
-              <h4 class="gallery-caption__title">Community Programme</h4>
-              <p class="gallery-caption__meta">Hazarat Ahmedshah Shadi Mahal · Gokak</p>
-            </figcaption>
-          </figure>
+        <!-- Modern Bento-Style Photo Grid -->
+        <div class="bento-gallery">
+          <!-- Bento Row 1: 4:3 Feature + 3:4 Portrait + Tall Vertical -->
+          <div class="bento-row bento-row--top">
+            <!-- Item 1: Community Programme (4:3) -->
+            <figure class="bento-card bento-card--landscape" tabindex="0">
+              <img loading="lazy" decoding="async" src="./assets/b069bbbe9d04d3e6d787d13f05d7ed51.jpg" alt="Community Programme assembly at Hazarat Ahmedshah Shadi Mahal, Gokak">
+              <span class="bento-card__badge">Community Gathering</span>
+              <div class="bento-card__overlay">
+                <figcaption class="bento-card__caption">
+                  <h4 class="bento-card__title">Community Programme</h4>
+                  <p class="bento-card__sub">Hazarat Ahmedshah Shadi Mahal · Gokak</p>
+                </figcaption>
+              </div>
+            </figure>
 
-          <figure class="gallery-item gallery-item--companion">
-            <div class="gallery-item__media">
-              <img loading="lazy" decoding="async" src="./assets/5b5b1edc73f9f76b4ca607534094dbfe.jpg" alt="Certificate distribution ceremony at Universal Education Centre">
-              <span class="gallery-item__badge">Student Achievement</span>
-            </div>
-            <figcaption class="gallery-caption">
-              <h4 class="gallery-caption__title">Certificate Distribution</h4>
-              <p class="gallery-caption__meta">Universal Education Centre · Gokak</p>
-            </figcaption>
-          </figure>
+            <!-- Item 2: Certificate Distribution (3:4) -->
+            <figure class="bento-card bento-card--portrait" tabindex="0">
+              <img loading="lazy" decoding="async" src="./assets/5b5b1edc73f9f76b4ca607534094dbfe.jpg" alt="Two students receiving course certificates at Universal Education Centre">
+              <span class="bento-card__badge">Student Achievement</span>
+              <div class="bento-card__overlay">
+                <figcaption class="bento-card__caption">
+                  <h4 class="bento-card__title">Certificate Distribution</h4>
+                  <p class="bento-card__sub">Universal Education Centre · Gokak</p>
+                </figcaption>
+              </div>
+            </figure>
 
-          <!-- Row 2: 3 balanced photos (4 cols each) = 12 cols -->
-          <figure class="gallery-item gallery-item--triad">
-            <div class="gallery-item__media">
-              <img loading="lazy" decoding="async" src="./assets/5adeba9132e07e6b12bb9ba97eef9f81.jpg" alt="Prize and memento distribution on stage in Gokak">
-              <span class="gallery-item__badge">Recognition</span>
-            </div>
-            <figcaption class="gallery-caption">
-              <h4 class="gallery-caption__title">Prize Distribution Ceremony</h4>
-              <p class="gallery-caption__meta">Honouring student excellence · Gokak</p>
-            </figcaption>
-          </figure>
+            <!-- Item 3: Prize Distribution (Tall Vertical) -->
+            <figure class="bento-card bento-card--tall" tabindex="0">
+              <img loading="lazy" decoding="async" src="./assets/5adeba9132e07e6b12bb9ba97eef9f81.jpg" alt="Dignitaries and elders presenting prizes and mementos on stage in Gokak">
+              <span class="bento-card__badge">Recognition</span>
+              <div class="bento-card__overlay">
+                <figcaption class="bento-card__caption">
+                  <h4 class="bento-card__title">Prize Distribution Ceremony</h4>
+                  <p class="bento-card__sub">Honouring student excellence · Gokak</p>
+                </figcaption>
+              </div>
+            </figure>
+          </div>
 
-          <figure class="gallery-item gallery-item--triad">
-            <div class="gallery-item__media">
-              <img loading="lazy" decoding="async" src="./assets/694ed1a747065a78e9749719bbf791ea.jpg" alt="Guests and volunteers at the Free Mega Khatna Camp">
-              <span class="gallery-item__badge">Healthcare Outreach</span>
-            </div>
-            <figcaption class="gallery-caption">
-              <h4 class="gallery-caption__title">Free Mega Khatna Camp</h4>
-              <p class="gallery-caption__meta">With Rahman Foundation &amp; Hind Education Trust</p>
-            </figcaption>
-          </figure>
+          <!-- Bento Row 2: Panoramic Healthcare Banner + Event Collage -->
+          <div class="bento-row bento-row--bottom">
+            <!-- Item 4: Free Mega Khatna Camp (2.216 Panorama) -->
+            <figure class="bento-card bento-card--panorama" tabindex="0">
+              <img loading="lazy" decoding="async" src="./assets/694ed1a747065a78e9749719bbf791ea.jpg" alt="Doctors, volunteers, and elders seated in front of the Free Mega Khatna Camp banner">
+              <span class="bento-card__badge">Healthcare Outreach</span>
+              <div class="bento-card__overlay">
+                <figcaption class="bento-card__caption">
+                  <h4 class="bento-card__title">Free Mega Khatna Camp</h4>
+                  <p class="bento-card__sub">With Rahman Foundation &amp; Hind Education Trust</p>
+                </figcaption>
+              </div>
+            </figure>
 
-          <figure class="gallery-item gallery-item--triad">
-            <div class="gallery-item__media">
-              <img loading="lazy" decoding="async" src="./assets/6f3b1560b3672204fe64d5f16a8be218.jpg" alt="Khatna Camp 2025 commemoration on 04 May 2025">
-              <span class="gallery-item__badge">Medical Mission</span>
-            </div>
-            <figcaption class="gallery-caption">
-              <h4 class="gallery-caption__title">Khatna Camp 2025 Commemoration</h4>
-              <p class="gallery-caption__meta">04 May 2025 · Community Service</p>
-            </figcaption>
-          </figure>
+            <!-- Item 5: Khatna Camp 2025 Commemoration (4:3) -->
+            <figure class="bento-card bento-card--collage" tabindex="0">
+              <img loading="lazy" decoding="async" src="./assets/6f3b1560b3672204fe64d5f16a8be218.jpg" alt="Commemorative collage of the Khatna Camp 2025 on 04 May 2025">
+              <span class="bento-card__badge">Medical Mission</span>
+              <div class="bento-card__overlay">
+                <figcaption class="bento-card__caption">
+                  <h4 class="bento-card__title">Khatna Camp 2025 Commemoration</h4>
+                  <p class="bento-card__sub">04 May 2025 · Community Health Service</p>
+                </figcaption>
+              </div>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
